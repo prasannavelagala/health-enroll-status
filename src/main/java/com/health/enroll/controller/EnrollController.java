@@ -19,7 +19,7 @@ public class EnrollController {
         return enrollService.getAllEnrollees();
     }
 
-    @GetMapping("/enrolls/{id}")
+    @GetMapping("/enrolls/{enrollId}")
     public EnrollmentDto getBook(@PathVariable Integer enrollId) {
         return enrollService.getEnrollee(enrollId);
     }
@@ -29,12 +29,12 @@ public class EnrollController {
     	enrollService.addEnrollee(enrollmentDto);
     }
 
-    @PutMapping("/enrolls/{id}")
+    @PutMapping("/enrolls")
     public void updateEnroll(@RequestBody EnrollmentDto enrollmentDto) {
     	enrollService.updateEnrollee(enrollmentDto);
     }
 
-    @DeleteMapping("/enrolls/{id}")
+    @DeleteMapping("/enrolls/{enrollId}")
     public void deleteEnroll(@PathVariable Integer enrollId) {
     	enrollService.deleteEnrollee(enrollId);
     }

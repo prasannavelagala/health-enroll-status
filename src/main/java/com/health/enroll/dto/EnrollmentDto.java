@@ -1,5 +1,9 @@
 package com.health.enroll.dto;
 
+import java.util.Set;
+
+import com.health.enroll.domain.Dependent;
+
 public class EnrollmentDto {
 
 	private Integer id;
@@ -11,6 +15,8 @@ public class EnrollmentDto {
 	private String phoneNumber;
 	
 	private String birthDate;
+	
+	private Set<DependentDto> dependentes;
 
 	public Integer getId() {
 		return id;
@@ -51,4 +57,13 @@ public class EnrollmentDto {
 	public void setBirthDate(String birthDate) {
 		this.birthDate = birthDate;
 	}
+
+	public Set<DependentDto> getDependentes() {
+		return dependentes;
+	}
+
+	public void setDependentes(Set<DependentDto> dependentes) {
+		this.dependentes = dependentes;
+	}
+	
 }

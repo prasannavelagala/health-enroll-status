@@ -8,7 +8,7 @@ private Integer id;
 	
 	private String birthDate;
 	
-	private Integer enrollId;
+	private EnrollmentDto enrollmentDto;
 	
 
 	public Integer getId() {
@@ -35,12 +35,12 @@ private Integer id;
 		this.birthDate = birthDate;
 	}
 
-	public Integer getEnrollId() {
-		return enrollId;
+	public EnrollmentDto getEnrollmentDto() {
+		return enrollmentDto;
 	}
 
-	public void setEnrollId(Integer enrollId) {
-		this.enrollId = enrollId;
+	public void setEnrollmentDto(EnrollmentDto enrollmentDto) {
+		this.enrollmentDto = enrollmentDto;
 	}
 
 }

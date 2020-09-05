@@ -24,13 +24,13 @@ public class DependentController {
 		dependentService.addDependents(dependentDtos);
     }
 
-    @PutMapping("/dependents/{id}")
+    @PutMapping("/dependents")
     public void updateDependents(@RequestBody List<DependentDto> enrodependentDto) {
     	dependentService.updateDependents(enrodependentDto);
     }
 
-    @DeleteMapping("/dependents/{id}")
-    public void deleteDependent(@PathVariable Integer enrollId) {
-    	dependentService.deleteDependentsUnderEnrollee(enrollId);
+    @DeleteMapping("/dependents/{dependentId}")
+    public void deleteDependent(@PathVariable Integer dependentId) {
+    	dependentService.deleteDependentsUnderEnrollee(dependentId);
     }
 }

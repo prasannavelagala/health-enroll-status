@@ -1,19 +1,27 @@
 package com.health.enroll.domain;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Dependent {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
 	private String name;
 	
 	private String birthDate;
 	
-	private Integer enrollId;
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "enrollId", nullable = false)
+    private Enrollment enrollment;
 	
 
 	public Integer getId() {
@@ -40,12 +48,12 @@ public class Dependent {
 		this.birthDate = birthDate;
 	}
 
-	public Integer getEnrollId() {
-		return enrollId;
+	public Enrollment getEnrollment() {
+		return enrollment;
 	}
 
-	public void setEnrollId(Integer enrollId) {
-		this.enrollId = enrollId;
+	public void setEnrollment(Enrollment enrollment) {
+		this.enrollment = enrollment;
 	}
 	
 }

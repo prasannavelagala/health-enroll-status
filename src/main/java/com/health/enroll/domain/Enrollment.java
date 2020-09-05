@@ -1,12 +1,20 @@
 package com.health.enroll.domain;
 
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Enrollment {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
 	private String name;
@@ -16,6 +24,10 @@ public class Enrollment {
 	private String phoneNumber;
 	
 	private String birthDate;
+	
+	@OneToMany(mappedBy = "enrollment", fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL)
+    private Set<Dependent> dependentes;
 	
 
 	public Integer getId() {
@@ -56,6 +68,14 @@ public class Enrollment {
 
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
+	}
+
+	public Set<Dependent> getDependentes() {
+		return dependentes;
+	}
+
+	public void setDependentes(Set<Dependent> dependentes) {
+		this.dependentes = dependentes;
 	}
 	
 }

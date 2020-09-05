@@ -1,13 +1,19 @@
 package com.health.enroll.serviceImpl;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
+import com.health.enroll.domain.Dependent;
 import com.health.enroll.domain.Enrollment;
+import com.health.enroll.dto.DependentDto;
 import com.health.enroll.dto.EnrollmentDto;
 import com.health.enroll.persistence.EnrollRepository;
 import com.health.enroll.service.EnrollService;
@@ -27,6 +33,7 @@ public class EnrollServiceImpl implements EnrollService{
 			enrollmentDto.setName(enroll.getName());
 			enrollmentDto.setActivationStatus(enroll.getActivationStatus());
 			enrollmentDto.setBirthDate(enroll.getBirthDate());
+			buildDependentsUnderEnroll(enroll, enrollmentDto);
 			enrollmentDtoList.add(enrollmentDto);
 		});
 		return enrollmentDtoList;
@@ -43,6 +50,7 @@ public class EnrollServiceImpl implements EnrollService{
 			enrollmentDto.setName(enroll.getName());
 			enrollmentDto.setActivationStatus(enroll.getActivationStatus());
 			enrollmentDto.setBirthDate(enroll.getBirthDate());
+			buildDependentsUnderEnroll(enroll, enrollmentDto);
 		}
 		return enrollmentDto;
 	}
@@ -75,6 +83,21 @@ public class EnrollServiceImpl implements EnrollService{
 	@Override
 	public void deleteEnrollee(Integer enrollId) {
 		enrollRepository.deleteById(enrollId);
+	}
+	
+	private void buildDependentsUnderEnroll(Enrollment enroll, EnrollmentDto enrollmentDto) {
+		Set<Dependent> dependentesList= enroll.getDependentes();
+		if(!CollectionUtils.isEmpty(dependentesList)) {
+			Set<DependentDto> dependentes=new HashSet<DependentDto>();
+			for(Dependent dependent: dependentesList) {
+				DependentDto dependentDto=new DependentDto();
+				dependentDto.setId(dependent.getId());
+				dependentDto.setName(dependent.getName());
+				dependentDto.setBirthDate(dependent.getBirthDate());
+				dependentes.add(dependentDto);
+			}
+			enrollmentDto.setDependentes(dependentes);
+		}
 	}
 
 }

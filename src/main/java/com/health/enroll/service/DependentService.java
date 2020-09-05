@@ -10,6 +10,6 @@ public interface DependentService {
 
 	void updateDependents(List<DependentDto> dependents);
 
-	void deleteDependentsUnderEnrollee(Integer enrollId);
+	void deleteDependentsUnderEnrollee(Integer dependentId);
 
 }
