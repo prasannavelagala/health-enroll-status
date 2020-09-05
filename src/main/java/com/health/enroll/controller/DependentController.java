@@ -20,7 +20,7 @@ public class DependentController {
 	private DependentService dependentService;
 	
 	@PostMapping("/dependents")
-    public void addBook(@RequestBody List<DependentDto> dependentDtos) {
+    public void addDependents(@RequestBody List<DependentDto> dependentDtos) {
 		dependentService.addDependents(dependentDtos);
     }
 

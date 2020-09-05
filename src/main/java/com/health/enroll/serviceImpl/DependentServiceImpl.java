@@ -3,13 +3,16 @@ package com.health.enroll.serviceImpl;
 import java.util.ArrayList;
 import java.util.List;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.health.enroll.domain.Dependent;
 import com.health.enroll.dto.DependentDto;
 import com.health.enroll.persistence.DependentRepository;
 import com.health.enroll.service.DependentService;
 
+@Service
 public class DependentServiceImpl implements DependentService{
 
 	@Autowired
